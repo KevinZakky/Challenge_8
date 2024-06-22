@@ -6,7 +6,8 @@ class CarAlreadyRentedError extends ApplicationError {
   }
 
   get details() {
-    return { car }
+    // eslint-disable-next-line no-undef
+    return { car };
   }
 }
 

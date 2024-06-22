@@ -1,12 +1,12 @@
-const { NotFoundError } = require("../errors");
+const { NotFoundError } = require('../errors');
 
 class ApplicationController {
   handleGetRoot = (req, res) => {
     res.status(200).json({
-      status: "OK",
-      message: "BCR API is up and running!",
+      status: 'OK',
+      message: 'BCR API is up and running!'
     });
-  }
+  };
 
   handleNotFound = (req, res) => {
     const err = new NotFoundError(req.method, req.url);
@@ -15,24 +15,24 @@ class ApplicationController {
       error: {
         name: err.name,
         message: err.message,
-        details: err.details,
+        details: err.details
       }
-    })
-  }
+    });
+  };
 
-  handleError = (err, req, res, next) => {
+  handleError = (err, req, res) => {
     res.status(500).json({
       error: {
         name: err.name,
         message: err.message,
-        details: err.details || null,
+        details: err.details || null
       }
-    })
-  } 
+    });
+  };
 
   getOffsetFromRequest(req) {
     const { page = 1, pageSize = 10 } = req.query;
-    const offset = (page - 1) * pageSize; 
+    const offset = (page - 1) * pageSize;
     return offset;
   }
 
@@ -43,8 +43,8 @@ class ApplicationController {
       page,
       pageCount,
       pageSize,
-      count,
-    }
+      count
+    };
   }
 }
 
